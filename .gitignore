@@ -1,10 +1,12 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*$py.class
 
 # C extensions
 *.so
+
+# Vim bullshit
+*.swp
 
 # Distribution / packaging
 .Python
@@ -15,7 +17,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -43,22 +44,12 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *,cover
-.hypothesis/
 
 # Translations
 *.mo
-*.pot
 
 # Django stuff:
 *.log
-local_settings.py
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
 
 # Sphinx documentation
 docs/_build/
@@ -66,24 +57,29 @@ docs/_build/
 # PyBuilder
 target/
 
-# IPython Notebook
-.ipynb_checkpoints
+# ini files
+*.ini
+!test.ini # Test ini is allowed
 
-# pyenv
-.python-version
+# po~ files
+*.po~
 
-# celery beat schedule file
-celerybeat-schedule
+#Bower & Gulp related stuff
+bower_components/
+node_modules/
 
-# dotenv
-.env
+partypeak/static/deps/styles/*
+partypeak/static/deps/scripts/*
+!partypeak/static/deps/styles/.gitkeep
+!partypeak/static/deps/scripts/.gitkeep
 
-# virtualenv
-venv/
-ENV/
+partypeak/static/img/**
+!partypeak/static/img/.gitkeep
 
-# Spyder project settings
-.spyderproject
+partypeak/static/scripts/min/**
+!partypeak/static/scripts/min/.gitkeep
 
-# Rope project settings
-.ropeproject
+partypeak/static/styles/min/**
+!partypeak/static/scripts/min/.gitkeep
+
+.DS_Store
