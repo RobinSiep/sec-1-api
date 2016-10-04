@@ -2,7 +2,9 @@ import logging
 
 from pyramid.view import view_config
 
+from sec_1_api.lib.encryption import encrypt
 from sec_1_api.lib.factories.root import RootFactory
+
 
 log = logging.getLogger(__name__)
 
@@ -22,4 +24,5 @@ def command(request):
     except KeyError:
         return {"error": "identifier not found"}
 
-    return {"do": "vibrate"}
+    command = encrypt(identifier, "vibrate")
+    return {"command": command}
