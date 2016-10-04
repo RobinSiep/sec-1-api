@@ -16,4 +16,10 @@ def root_view(request):
 @view_config(context=RootFactory, permission='public', renderer='json',
              request_method='GET', name='command')
 def command(request):
+
+    try:
+        identifier = request.headers['identifier']
+    except KeyError:
+        return {"error": "identifier not found"}
+
     return {"do": "vibrate"}
