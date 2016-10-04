@@ -22,6 +22,7 @@ def command(request):
     except KeyError:
         return {"error": "identifier not found"}
 
-    command = encrypt_aes_base64("vibrate", "password")
+    command = encrypt_aes_base64(
+        "vibrate", request.registry.settings['sync_encryption_key'])
 
     return {"do": command}

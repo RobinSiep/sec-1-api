@@ -10,7 +10,6 @@ def encrypt_aes_base64(text, key):
     padding = '{'
     pad = lambda s: s + (block_size - len(s) % block_size) * padding
     encode_aes = lambda c, s: base64.b64encode(c.encrypt(pad(s)))
-    secret = os.urandom(block_size)
-    cipher = AES.new(secret)
+    cipher = AES.new(key)
     encrypted = encode_aes(cipher, key)
     return base64.b64encode(encrypted).decode('utf-8')

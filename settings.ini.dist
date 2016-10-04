@@ -24,6 +24,8 @@ sqlalchemy.url = sqlite:///%(here)s/sec-1-api.sqlite
 # wsgi server configuration
 ###
 
+sync_encryption_key = 
+
 [server:main]
 use = egg:waitress#main
 host = 127.0.0.1
