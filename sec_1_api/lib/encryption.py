@@ -3,7 +3,7 @@ import base64
 
 
 def rsa_encrypt_base64(key, text):
-    # generate pub key for now 
+    # generate pub key for prototype purpose
     key = RSA.generate(2048)
     gen_pub_key = key.publickey().exportKey('DER')
 
