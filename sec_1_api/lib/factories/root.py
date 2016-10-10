@@ -1,4 +1,4 @@
-from pyramid.security import Allow, Everyone
+from pyramid.security import Allow, Everyone, Authenticated
 
 
 class RootFactory(dict):
@@ -9,4 +9,5 @@ class RootFactory(dict):
         self.__parent__ = None
 
     def __acl__(self):
-        return ((Allow, Everyone, 'public'),)
+        return ((Allow, Everyone, 'public'),
+                (Allow, Authenticated, 'logout'))
