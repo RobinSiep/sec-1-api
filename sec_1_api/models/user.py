@@ -20,3 +20,7 @@ class User(Base):
 
 def get_user_by_username(username):
     return session.query(User).filter(User.username == username).one()
+
+
+def get_user_by_id(id):
+    return session.query(User).get(id)
