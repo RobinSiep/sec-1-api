@@ -16,6 +16,7 @@ requires = [
     'sqlalchemy_utils',
     'zope.sqlalchemy',
     'transaction',
+    'marshmallow',
     'waitress',
     ]
 
