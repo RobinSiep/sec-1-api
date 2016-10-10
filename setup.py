@@ -9,9 +9,12 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'bcrypt',
+    'bleach',
     'pyramid',
     'pyramid_debugtoolbar',
     'pyramid_tm',
+    'psycopg2',
     'SQLAlchemy',
     'sqlalchemy_utils',
     'zope.sqlalchemy',
