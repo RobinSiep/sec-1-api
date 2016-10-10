@@ -21,7 +21,7 @@ def login(request):
     try:
         result, errors = LoginSchema(strict=True).load(request.json_body)
     except ValidationError as e:
-        raise HTTPBadRequest()
+        raise HTTPBadRequest(e.message)
 
     try:
         user = get_user_by_username(username=result['username'])
