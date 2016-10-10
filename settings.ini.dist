@@ -13,8 +13,17 @@ pyramid.debug_routematch = false
 pyramid.default_locale_name = en
 pyramid.includes =
     pyramid_debugtoolbar
+    pyramid_redis_sessions
 
 sqlalchemy.url = sqlite:///%(here)s/sec-1-api.sqlite
+
+redis.sessions.secret =
+redis.sessions.timeout = 1200
+
+redis.sessions.host =
+redis.sessions.post = 6379
+redis.sessions.db = 0
+redis.sessions.password =
 
 auth.secret =
 # these two settings below are optional
@@ -58,7 +67,7 @@ handlers =
 qualname = sec_1_api
 
 [logger_sqlalchemy]
-level = INFO
+level = WARN
 handlers =
 qualname = sqlalchemy.engine
 # "level = INFO" logs SQL queries.

@@ -1,8 +1,8 @@
 import logging
 
 from marshmallow import ValidationError
-from pyramid.httpexceptions import HTTPBadRequest
-from pyramid.security import remember
+from pyramid.httpexceptions import HTTPOk, HTTPBadRequest
+from pyramid.security import forget, remember
 from pyramid.view import view_config
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -36,3 +36,10 @@ def login(request):
 
     # Return the session cookie
     return request.response.headerlist.extend(headers)
+
+
+@view_config(context=RootFactory, permission='logout', name='logout',
+             renderer='json', request_method='GET')
+def logout(request):
+    request.session.invalidate()
+    return HTTPOk(headers=forget(request))
