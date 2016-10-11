@@ -10,6 +10,10 @@ from sqlalchemy import engine_from_config
 from sec_1_api.lib.factories.root import RootFactory
 from sec_1_api.models.meta import DBSession, Base
 from sec_1_api.models.user import get_user_by_id
+from sec_1_api.handlers.command import command
+
+from gevent import monkey
+monkey.patch_all()
 
 log = logging.getLogger(__name__)
 
@@ -27,11 +31,15 @@ def main(global_config, **settings):
         http_only=True,
         hashalg='sha512')
 
+
+
     config = Configurator(settings=settings,
                           authentication_policy=authentication_policy,
                           authorization_policy=ACLAuthorizationPolicy(),
                           root_factory=RootFactory)
     config.set_request_property(get_user, 'user', reify=True)
+    config.add_route('command', '/command')
+    config.add_view(command, route_name='command', renderer='json')
     config.add_renderer(None, JSON())
     config.scan('sec_1_api.handlers')
 

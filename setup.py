@@ -22,6 +22,7 @@ requires = [
     'transaction',
     'marshmallow',
     'waitress',
+    'gevent-socketio'
     ]
 
 tests_require = [

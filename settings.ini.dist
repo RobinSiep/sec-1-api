@@ -38,10 +38,17 @@ auth.reissue_time = 120
 # wsgi server configuration
 ###
 
+#[server:main]
+#use = egg:gevent-socketio#paster
+#host = 127.0.0.1
+#port = 6542
+
 [server:main]
-use = egg:waitress#main
-host = 127.0.0.1
-port = 6543
+#use = egg:gunicorn#main
+#host = 0.0.0.0
+#port = 6542
+#workers = 4
+#worker_class = socketio.sgunicorn.GeventSocketIOWorker
 
 ###
 # logging configuration
