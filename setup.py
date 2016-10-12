@@ -22,6 +22,7 @@ requires = [
     'transaction',
     'marshmallow',
     'waitress',
+    'aiopyramid[gunicorn]'
     ]
 
 tests_require = [
