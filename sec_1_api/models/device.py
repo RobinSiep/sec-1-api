@@ -1,7 +1,7 @@
 import logging
 import uuid
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy_utils import UUIDType
 
 from sec_1_api.models.meta import Base, DBSession as session

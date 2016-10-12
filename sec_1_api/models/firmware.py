@@ -3,7 +3,7 @@ import logging
 import uuid
 
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, ForeignKey, DateTime
 from sqlalchemy_utils import UUIDType
 
 from sec_1_api.models.meta import Base, DBSession as session
@@ -23,4 +23,4 @@ class Firmware(Base):
 
 
 def get_latest_firmware():
-    return session.query(Firmware).order_by(ObjectRes.date_created.desc()).first()
+    return session.query(Firmware).order_by(Firmware.date_created.desc()).first()
