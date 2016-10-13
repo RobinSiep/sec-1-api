@@ -1,7 +1,7 @@
 import logging
 import uuid
 
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String, ForeignKey, Boolean
 from sqlalchemy_utils import UUIDType
 
 from sec_1_api.models.meta import Base, DBSession as session
@@ -21,6 +21,8 @@ class Device(Base):
     link_id = Column(
         UUIDType(binary=False), primary_key=True, default=uuid.uuid4)
     secret_identifier = Column(String(250), unique=True)
+    on = Column(Boolean(default=False))
+    pattern = Column(String(100))
 
 
 def get_device_by_link_id(link_id):

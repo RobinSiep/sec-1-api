@@ -26,6 +26,8 @@ class Websocket(ViboWebsocket):
 
     def on_open(self):
         yield from self.send('connected')
+        while True:
+            checkforcommand()
 
     def on_message(self, data):
         data = json.loads(data)
