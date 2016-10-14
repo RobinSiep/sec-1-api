@@ -13,6 +13,8 @@ from sec_1_api.models.user import get_user_by_id
 
 log = logging.getLogger(__name__)
 
+websockets = {}
+
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
