@@ -6,7 +6,10 @@ __pycache__/
 *.so
 
 # Vim bullshit
-*.swp
+*.sw*
+
+# API key
+.key
 
 # Distribution / packaging
 .Python
@@ -47,6 +50,7 @@ coverage.xml
 
 # Translations
 *.mo
+*.pot
 
 # Django stuff:
 *.log
@@ -60,26 +64,3 @@ target/
 # ini files
 *.ini
 !test.ini # Test ini is allowed
-
-# po~ files
-*.po~
-
-#Bower & Gulp related stuff
-bower_components/
-node_modules/
-
-partypeak/static/deps/styles/*
-partypeak/static/deps/scripts/*
-!partypeak/static/deps/styles/.gitkeep
-!partypeak/static/deps/scripts/.gitkeep
-
-partypeak/static/img/**
-!partypeak/static/img/.gitkeep
-
-partypeak/static/scripts/min/**
-!partypeak/static/scripts/min/.gitkeep
-
-partypeak/static/styles/min/**
-!partypeak/static/scripts/min/.gitkeep
-
-.DS_Store

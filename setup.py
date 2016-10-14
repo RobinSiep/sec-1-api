@@ -47,9 +47,8 @@ setup(name='sec-1-api',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      extras_require={
-          'testing': tests_require,
-      },
+      test_suite='sec_1_api',
+      test_requires=tests_require,
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
