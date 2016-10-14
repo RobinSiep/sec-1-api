@@ -21,7 +21,7 @@ redis.sessions.secret =
 redis.sessions.timeout = 1200
 
 redis.sessions.host =
-redis.sessions.post = 6379
+redis.sessions.port = 6379
 redis.sessions.db = 0
 redis.sessions.password =
 
