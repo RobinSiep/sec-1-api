@@ -26,7 +26,7 @@
 
         <div class="col-md-10">
           <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
-          <p class="help-block">A minimum of 8 characters need to be used. The password needs to contain at least 1 uppercase letter, 1 lowercase letter and 1 number.</p>
+          <p class="help-block">A minimum of 8 characters need to be used. The password needs to contain at least 1 letter and 1 number.</p>
         </div>
       </div>
       <div class="form-group">

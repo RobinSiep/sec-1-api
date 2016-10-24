@@ -32,18 +32,7 @@ class RegisterSchema(Schema):
 
     @post_load
     def validate_password(self, data):
-        password = data['password']
-        error = {"password": ""}
-
-        if has_spaces(password):
-            error['password'] = 'Password may not contain any spaces'
-        elif not has_numbers(password):
-            error['password'] = 'Password must contain at least 1 number'
-        elif not has_letters(password):
-            error['password'] = 'Password must contain at least 1 letter'
-        else:
-            return
-        raise ValidationError(error)
+        validate_password(data)
 
     @post_load
     def check_existing_username(self, data):
@@ -77,3 +66,18 @@ def has_letters(password):
 def has_numbers(password):
     _digits = re.compile('\d')
     return bool(_digits.search(password))
+
+
+def validate_password(data):
+    password = data['password']
+    error = {"password": ""}
+
+    if has_spaces(password):
+        error['password'] = 'Password may not contain any spaces'
+    elif not has_numbers(password):
+        error['password'] = 'Password must contain at least 1 number'
+    elif not has_letters(password):
+        error['password'] = 'Password must contain at least 1 letter'
+    else:
+        return
+    raise ValidationError(error)

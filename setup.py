@@ -19,6 +19,7 @@ requires = [
     'psycopg2',
     'SQLAlchemy',
     'sqlalchemy_utils',
+    'sendgrid',
     'zope.sqlalchemy',
     'transaction',
     'marshmallow',
