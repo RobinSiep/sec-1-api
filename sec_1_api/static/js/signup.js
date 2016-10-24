@@ -2,24 +2,24 @@ $(document).ready(function() {
 	$("#signup-form").submit(function(event){
 		var $form = $(this);
 
-		var data = JSON.stringify($form.serializeObject());
+		var data = $form.serializeObject();
 
-		console.log(data);
 		var request = $.ajax({
 			url: "/register",
 			type: "POST",
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
-			data: data
+			data: JSON.stringify(data)
 		})
 
 		request.done(function(response, textStatus, jqXHR){
+			var loginData = {password: data.password, username: data.username}
 			var loginRequest = $.ajax({
 				url: "/login",
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				dataType: "json",
-				data: {"password": data["password"], "username": data["username"]}
+				data: JSON.stringify(loginData)
 			})
 
 			loginRequest.done(function(response, textStatus, jqXHR){

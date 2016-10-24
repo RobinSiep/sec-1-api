@@ -42,5 +42,5 @@ def main(global_config, **settings):
 def get_user(request):
     user_id = authenticated_userid(request)
     if user_id is not None:
-        return get_user_by_id(user_id)
+        return get_user_by_id(str(user_id))
     return None

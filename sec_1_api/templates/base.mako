@@ -32,8 +32,8 @@
 		      </button>
 		      <a class="navbar-brand" href="javascript:void(0)">Librator</a>
 		    </div>
-		    <div class="navbar-collapse collapse navbar-inverse-collapse">
-		    </div>
+		    <%block name="nav_buttons">
+		    </%block>
 		</div>
 	</div>
 	<div class="col-lg-10 col-md-8 col-sm-10 col-xs-12 center-block">
