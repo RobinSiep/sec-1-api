@@ -20,7 +20,7 @@ class LoginSchema(Schema):
 class RegisterSchema(Schema):
     username = CleanString(required='username is required',
                            validation=validate.Length(min=1, max=100))
-    email = CleanString()
+    email = CleanString(validation=validate.Length(min=0, max=200))
     password = CleanString(required='password is required',
                            validation=validate.Length(min=1, max=100))
     password_confirm = CleanString(required='password_confirm is required')

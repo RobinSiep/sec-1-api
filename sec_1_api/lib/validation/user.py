@@ -25,6 +25,10 @@ class RecoverSchema(Schema):
                            validation=validate.Length(equal=8))
 
     @post_load
+    def verify_email(self, data):
+        _verify_email(data)
+
+    @post_load
     def compare_passwords(self, data):
         if data['password'] != data['password_confirm']:
             raise ValidationError({"password": "Passwords do not match"})
@@ -36,9 +40,6 @@ class RecoverSchema(Schema):
 
 def _verify_email(data):
     email = data['email']
-
-    if not email:
-        return
 
     if '@' and '.' not in email:
         raise ValidationError('Invalid email')

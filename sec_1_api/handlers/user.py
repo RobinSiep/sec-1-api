@@ -6,13 +6,15 @@ from pyramid.httpexceptions import (HTTPBadRequest, HTTPInternalServerError,
 from pyramid.view import view_config
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Email, Content, Mail
+from sqlalchemy.orm.exc import NoResultFound
 
 from sec_1_api.lib.factories.root import RootFactory
-from sec_1_api.lib.security import hash_password
+from sec_1_api.lib.redis import RedisSession
+from sec_1_api.lib.security import hash_password, get_secure_token
 from sec_1_api.lib.validation.auth import RegisterSchema
 from sec_1_api.lib.validation.user import SendRecoverSchema, RecoverSchema
 from sec_1_api.models import commit, persist, rollback
-from sec_1_api.models.user import User
+from sec_1_api.models.user import User, get_user_by_email
 
 log = logging.getLogger(__name__)
 
@@ -56,16 +58,31 @@ def sendRecover(request):
     except ValidationError as e:
         raise HTTPBadRequest(json_body=e.messages)
 
+    try:
+        user = get_user_by_email(result["email"])
+    except NoResultFound:
+        return
+
+    code = get_secure_token(8)
+
+    _cache_recover_code(user, code)
+
     sendgridClient = SendGridAPIClient(
         apikey=request.registry.settings['sendgrid_api_key'])
     from_email = Email("noreply@localhost.com")
     subject = "Your recovery code"
     to_email = result['email']
-    content = Content("text/plain", "recoverdcode")
+    content = Content("text/plain", code)
     mail = Mail(from_email, subject, to_email, content)
     response = sendgridClient.mail.send.post(request_body=mail.get())
     if not response.status_code != 200:
         raise HTTPInternalServerError
+
+
+def _cache_recover_code(user, code):
+    # expire in 6 hours
+    RedisSession().session.setex("recover_{}}".format(user.id),
+                                 code, 21600)
 
 
 @view_config(permission='public', context=RootFactory, name='signup',

@@ -8,6 +8,7 @@ from pyramid.security import authenticated_userid
 from sqlalchemy import engine_from_config
 
 from sec_1_api.lib.factories.root import RootFactory
+from sec_1_api.lib.redis import RedisSession
 from sec_1_api.models.meta import DBSession, Base
 from sec_1_api.models.user import get_user_by_id
 
@@ -20,6 +21,10 @@ def main(global_config, **settings):
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
+
+    RedisSession(settings['redis.host'], settings['redis.port'],
+                 settings['redis.db'], settings.get('redis.password', None))
+
     authentication_policy = AuthTktAuthenticationPolicy(
         secret=settings['auth.secret'],
         timeout=settings.get('auth.timeout'),
