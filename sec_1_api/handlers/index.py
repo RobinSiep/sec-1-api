@@ -7,7 +7,12 @@ from sec_1_api.lib.factories.root import RootFactory
 log = logging.getLogger(__name__)
 
 
-@view_config(context=RootFactory, permission='public', renderer='json',
-             request_method='GET')
+@view_config(context=RootFactory, permission='public', request_method='GET',
+             renderer='sec_1_api:templates/index.mako')
 def root_view(request):
-    return {"sec-1-api": "0.1"}
+    return {}
+
+@view_config(context=RootFactory, permission='public', request_method='GET',
+			 renderer='sec_1_api:templates/home.mako', name='home')
+def home_view(request):
+	return {}

@@ -20,7 +20,7 @@ def post_user(request):
     try:
         result, errors = RegisterSchema(strict=True).load(request.json_body)
     except ValidationError as e:
-        raise HTTPBadRequest(json_body=e.message)
+        raise HTTPBadRequest(json_body=e.messages)
 
     password_hash, password_salt = hash_password(result['password'])
 
@@ -37,3 +37,8 @@ def post_user(request):
         commit()
 
     raise HTTPCreated
+
+@view_config(permission='public', context=RootFactory, name='signup',
+             renderer='sec_1_api:templates/register.mako', request_method='GET')
+def signup_view(request):
+    return {}

@@ -32,6 +32,7 @@ def main(global_config, **settings):
                           authorization_policy=ACLAuthorizationPolicy(),
                           root_factory=RootFactory)
     config.set_request_property(get_user, 'user', reify=True)
+    config.add_static_view(name='static', path="sec_1_api:static")
     config.add_renderer(None, JSON())
     config.scan('sec_1_api.handlers')
 
