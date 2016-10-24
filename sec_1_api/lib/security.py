@@ -8,6 +8,10 @@ def hash_password(password):
             salt.decode('utf-8'))
 
 
+def hash_(password):
+    return bcrypt.hashpw(password, bcrypt.gensalt())
+
+
 def check_password(password, hashed_password=None, salt=None):
     """
     Checks the password against the hashed bytes of the user. Even if
