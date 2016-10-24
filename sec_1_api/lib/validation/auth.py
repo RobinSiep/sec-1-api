@@ -54,6 +54,16 @@ class RegisterSchema(Schema):
         raise ValidationError({
             "username": "a user with this username already exists!"})
 
+    @post_load
+    def verify_email(self, data):
+        email = data['email']
+
+        if not email:
+            return
+
+        if '@' and '.' not in email:
+            raise ValidationError('Invalid email')
+
 
 def has_spaces(password):
     return ' ' in password

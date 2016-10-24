@@ -38,7 +38,9 @@ def post_user(request):
 
     raise HTTPCreated
 
+
 @view_config(permission='public', context=RootFactory, name='signup',
-             renderer='sec_1_api:templates/register.mako', request_method='GET')
+             renderer='sec_1_api:templates/register.mako',
+             request_method='GET')
 def signup_view(request):
     return {}
