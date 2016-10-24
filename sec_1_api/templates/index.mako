@@ -15,6 +15,7 @@
     </div>
     <div class="form-group">
       <div>
+        <button class="btn btn-danger" onclick="location.href='recover';">Forgot password?</button>
         <input type="submit" class="btn btn-primary pull-right" value="Sign in" />
       </div>
     </div>

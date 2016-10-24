@@ -4,7 +4,6 @@ $(document).ready(function() {
 
 		var data = JSON.stringify($form.serializeObject());
 
-		console.log(data);
 		var request = $.ajax({
 			url: "/login",
 			type: "POST",
@@ -14,7 +13,6 @@ $(document).ready(function() {
 		})
 
 		request.done(function(response, textStatus, jqXHR){
-			console.log("worked");
 			window.location.replace("home")
 		})
 
