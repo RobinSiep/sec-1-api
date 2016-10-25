@@ -33,7 +33,7 @@
 	      </div>
 	       <div class="form-group">
 		      <div class="col-md-10">
-		        <input type="text" class="form-control" id="inputCode" name="code" placeholder="Recovery code">
+		        <input type="text" class="form-control" id="inputCode" name="recovery_code" placeholder="Recovery code">
 		      </div>
 		   </div>
 		  	<div class="form-group">

@@ -13,7 +13,6 @@ $(document).ready(function() {
 		})
 
 		request.done(function(response, textStatus, jqXHR){
-			console.log("worked");
 			toggleVisibility();
 		})
 
@@ -27,28 +26,28 @@ $(document).ready(function() {
 	$("#recover-code-form").submit(function(event){
 		var $form = $(this);
 
-		var data = JSON.stringify($form.serializeObject());
+		var data = $form.serializeObject();
+		var emailFormData = $("#recover-email-form").serializeObject();
+		data["email"] = emailFormData.email;
 
 		var request = $.ajax({
 			url: "/recover",
 			type: "POST",
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
-			data: data
+			data: JSON.stringify(data)
 		})
 
 		request.done(function(response, textStatus, jqXHR){
-			console.log("succes")
 		})
 
 		request.fail(function(jqXHR, textStatus, errorThrown){
-			console.log("fail");
 		})
 
 		return false;
 	})
 
-	$("stepBack").click(function(){
+	$("#stepBack").click(function(){
 		toggleVisibility();
 	})
 })

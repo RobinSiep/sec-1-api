@@ -30,7 +30,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="javascript:void(0)">Librator</a>
+		      <a class="navbar-brand" href="/">Librator</a>
 		    </div>
 		    <%block name="nav_buttons">
 		    </%block>

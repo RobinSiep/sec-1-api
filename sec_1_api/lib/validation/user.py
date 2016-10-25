@@ -21,8 +21,8 @@ class RecoverSchema(Schema):
     password = CleanString(required='password is required',
                            validation=validate.Length(min=1, max=100))
     password_confirm = CleanString(required='password_confirm is required')
-    recovery = CleanString(required='recovery code is required',
-                           validation=validate.Length(equal=8))
+    recovery_code = CleanString(required='recovery code is required',
+                                validation=validate.Length(equal=8))
 
     @post_load
     def verify_email(self, data):

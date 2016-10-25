@@ -32,6 +32,9 @@ def post_user(request):
     user = User(username=result['username'], password_hash=password_hash,
                 password_salt=password_salt)
 
+    if result["email"]:
+        user.email = result["email"]
+
     try:
         persist(user)
     except:
@@ -47,7 +50,33 @@ def post_user(request):
 @view_config(permission='public', context=RootFactory, renderer='json',
              request_method='POST', name='recover')
 def recovery(request):
-    return {}
+    try:
+        result, errors = RecoverSchema(strict=True).load(request.json_body)
+    except ValidationError as e:
+        raise HTTPBadRequest(json_body=e.messages)
+
+    try:
+        user = get_user_by_email(result["email"])
+    except NoResultFound:
+        return
+
+    if _check_recover_code(user, result['recovery_code']):
+        password_hash, password_salt = hash_password(result['password'])
+        user.password_hash = password_hash
+        user.password_salt = password_salt
+
+        try:
+            persist(user)
+        except:
+            log.critical("Something went wrong updating the user",
+                         exc_info=True)
+            rollback()
+            raise HTTPInternalServerError
+        finally:
+            commit()
+            return
+
+    raise HTTPBadRequest(json_body={"recovery_code": "Invalid recovery code"})
 
 
 @view_config(permission='public', context=RootFactory, renderer='json',
@@ -71,18 +100,31 @@ def sendRecover(request):
         apikey=request.registry.settings['sendgrid_api_key'])
     from_email = Email("noreply@localhost.com")
     subject = "Your recovery code"
-    to_email = result['email']
+    to_email = Email(result['email'])
     content = Content("text/plain", code)
     mail = Mail(from_email, subject, to_email, content)
-    response = sendgridClient.mail.send.post(request_body=mail.get())
+    response = sendgridClient.client.mail.send.post(request_body=mail.get())
     if not response.status_code != 200:
         raise HTTPInternalServerError
 
 
 def _cache_recover_code(user, code):
     # expire in 6 hours
-    RedisSession().session.setex("recover_{}}".format(user.id),
-                                 code, 21600)
+    RedisSession().session.setex("recover_{}".format(user.id),
+                                 21600, code)
+
+
+def _check_recover_code(user, code):
+    cached_recovery_code = RedisSession().session.get(
+        "recover_{}".format(user.id))
+
+    if (not cached_recovery_code or
+            code != cached_recovery_code.decode('utf-8')):
+        log.info(code)
+        log.info(cached_recovery_code.decode('utf-8'))
+        return False
+
+    return True
 
 
 @view_config(permission='public', context=RootFactory, name='signup',
