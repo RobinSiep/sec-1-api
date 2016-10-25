@@ -42,4 +42,4 @@ def _verify_email(data):
     email = data['email']
 
     if '@' and '.' not in email:
-        raise ValidationError('Invalid email')
+        raise ValidationError({"email": "Invalid email"})

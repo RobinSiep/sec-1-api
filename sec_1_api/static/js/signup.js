@@ -28,7 +28,7 @@ $(document).ready(function() {
 		})
 
 		request.fail(function(jqXHR, textStatus, errorThrown){
-			console.log("fail");
+			showErrors(JSON.parse(jqXHR.responseText))
 		})
 
 		return false;

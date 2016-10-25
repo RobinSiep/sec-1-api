@@ -120,8 +120,6 @@ def _check_recover_code(user, code):
 
     if (not cached_recovery_code or
             code != cached_recovery_code.decode('utf-8')):
-        log.info(code)
-        log.info(cached_recovery_code.decode('utf-8'))
         return False
 
     return True

@@ -17,7 +17,7 @@ $(document).ready(function() {
 		})
 
 		request.fail(function(jqXHR, textStatus, errorThrown){
-			console.log("fail");
+			showErrors(JSON.parse(jqXHR.responseText));
 		})
 
 		return false;
@@ -39,9 +39,11 @@ $(document).ready(function() {
 		})
 
 		request.done(function(response, textStatus, jqXHR){
+			window.location.replace("/");
 		})
 
 		request.fail(function(jqXHR, textStatus, errorThrown){
+			showErrors(JSON.parse(jqXHR.responseText));
 		})
 
 		return false;

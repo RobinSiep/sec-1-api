@@ -28,7 +28,7 @@ def login(request):
     except NoResultFound:
         check_password(result["password"])
         raise HTTPBadRequest(
-            json={"message": "Username and password don't match"})
+            json={"password": "Username and password don't match"})
 
     check_password(result["password"], user.password_hash, user.password_salt)
 
