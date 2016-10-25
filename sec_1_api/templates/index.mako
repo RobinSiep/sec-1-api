@@ -17,6 +17,7 @@
       <div>
         <button class="btn btn-danger" onclick="location.href='recover';">Forgot password?</button>
         <input type="submit" class="btn btn-primary pull-right" value="Sign in" />
+        <button class="btn btn-default col-md-12 onclick="location.href='signup';">No account? Sign up instead</button>
       </div>
     </div>
   </fieldset>

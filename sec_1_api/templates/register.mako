@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-md-10 col-md-offset-2">
+        <div class="col-md-12">
           <input type="submit" class="btn btn-primary pull-right" value="Sign up"/>
         </div>
       </div>
