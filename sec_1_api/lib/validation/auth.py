@@ -5,7 +5,7 @@ from marshmallow import Schema, validate, post_load, ValidationError
 from sqlalchemy.orm.exc import NoResultFound
 
 from sec_1_api.lib.validation import CleanString
-from sec_1_api.models.user import get_user_by_username
+from sec_1_api.models.user import get_user_by_email, get_user_by_username
 
 log = logging.getLogger(__name__)
 
@@ -47,6 +47,13 @@ class RegisterSchema(Schema):
     @post_load
     def verify_email(self, data):
         email = data['email']
+
+        try:
+            get_user_by_email(email)
+            raise ValidationError('A user with this email already exists')
+        except NoResultFound:
+            # If there's no user found for this email it's safe to continue
+            pass
 
         if not email:
             return
