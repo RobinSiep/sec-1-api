@@ -35,4 +35,27 @@ $(document).ready(function() {
         $(".error").remove();
         $(".has-error is-focused").removeClass(".has-error is-focused");
     })
+
+    $("#pattern-form").submit(function(event){
+        var $form = $(this);
+
+        var data = JSON.stringify($form.serializeObject());
+
+        console.log(data)
+
+        var request = $.ajax({
+            url: "/command",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: data
+        })
+
+
+        request.fail(function(jqXHR, textStatus, errorThrown){
+            // showErrors(JSON.parse(jqXHR.responseText))
+        })
+
+        return false;
+})
 })

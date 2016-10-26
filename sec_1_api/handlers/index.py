@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
              renderer='sec_1_api:templates/index.mako')
 def root_view(request):
     if request.user:
-            raise HTTPFound(location="home")
+        raise HTTPFound(location="home")
     return {}
 
 
