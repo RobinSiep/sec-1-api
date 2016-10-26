@@ -21,16 +21,16 @@ def login(request):
     try:
         result, errors = LoginSchema(strict=True).load(request.json_body)
     except ValidationError as e:
-        raise HTTPBadRequest(e.message)
+        raise HTTPBadRequest(json_body=e.messages)
 
     try:
-        user = get_user_by_username(username=result['username'])
+        user = get_user_by_username(username=result["username"])
     except NoResultFound:
-        check_password(result['password'])
+        check_password(result["password"])
         raise HTTPBadRequest(
-            json={"message": "Username and password don't match"})
+            json={"password": "Username and password don't match"})
 
-    check_password(result['password'], user.password_hash, user.password_salt)
+    check_password(result["password"], user.password_hash, user.password_salt)
 
     headers = remember(request, str(user.id))
 

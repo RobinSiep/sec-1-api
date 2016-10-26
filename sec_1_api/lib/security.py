@@ -1,5 +1,12 @@
+import base64
+import os
+
 import bcrypt
 from pyramid.httpexceptions import HTTPBadRequest
+
+
+def get_secure_token(length):
+    return base64.b64encode(os.urandom(length)).decode('utf-8')
 
 
 def hash_password(password):
