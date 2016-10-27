@@ -6,6 +6,9 @@
 </%block>
 <%block name="nav_buttons">
 	<ul class="nav navbar-nav">
+  % if admin:
+      <li><a href="firmware">firmware</a></li>
+    % endif
 		<li><a href="device">Manage devices</a></li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
@@ -22,7 +25,7 @@
     </div>
     <div class="form-group">
       <div class="col-md-12">
-        <input type="text" class="form-control" id="inputDeviceIdentifier" name="link_id" placeholder="Device Identifier">
+        <input type="text" class="form-control" id="inputDeviceIdentifier" name="link_id" placeholder="Pair ID">
          <p class="help-block">This identifier is show when you set up the device for the first time</p>
     </div>
   </fieldset>
@@ -46,7 +49,7 @@
   % for device in devices:
     <tr>
       <td><p>${device.name}</p></td>
-      <td><button onclick="remove('${device.name}')" class="btn btn-raised btn-danger pull-right">Danger</button></td>
+      <td><button onclick="remove('${device.name}')" class="btn btn-raised btn-danger pull-right">Delete</button></td>
     </tr>
   % endfor
 </tbody>
