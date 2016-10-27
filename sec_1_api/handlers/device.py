@@ -19,7 +19,10 @@ log = logging.getLogger(__name__)
 @view_config(permission='device', context=RootFactory, name='device',
              request_method='GET', renderer='sec_1_api:templates/device.mako')
 def device_view(request):
-    return {"devices": request.user.devices}
+    return {
+        "devices": request.user.devices,
+        "captcha": captcha_needed('device_link', request, request.user.id)
+    }
 
 
 @view_config(permission='device', context=RootFactory, name='device',

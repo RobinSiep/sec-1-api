@@ -2,6 +2,7 @@
 <%block name="scripts">
   <script src="static/js/logout.js"></script>
   <script src="static/js/device.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </%block>
 <%block name="nav_buttons">
 	<ul class="nav navbar-nav">
@@ -25,6 +26,10 @@
          <p class="help-block">This identifier is show when you set up the device for the first time</p>
     </div>
   </fieldset>
+  % if captcha:
+      <div id="captcha"><div class="g-recaptcha" data-sitekey="6LdGPQoUAAAAAKtKfu_qAwr9rQWxapllFZWoLUtJ">
+      </div></div>
+   % endif
   <div class="form-group">
       <div>
         <input type="submit" class="btn btn-raised btn-primary col-md-12" value="Add New Device"/>
