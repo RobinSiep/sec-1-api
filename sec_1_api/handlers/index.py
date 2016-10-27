@@ -4,6 +4,7 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
 
 from sec_1_api.lib.factories.root import RootFactory
+from sec_1_api.models.device import get_devices_by_user_id, get_device_by_link_id
 
 log = logging.getLogger(__name__)
 
@@ -19,4 +20,7 @@ def root_view(request):
 @view_config(context=RootFactory, permission='public', request_method='GET',
              renderer='sec_1_api:templates/home.mako', name='home')
 def home_view(request):
-    return {}
+    devices = get_devices_by_user_id(request.user.id)
+    return {
+        'devices': devices
+    }

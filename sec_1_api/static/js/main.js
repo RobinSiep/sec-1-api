@@ -44,7 +44,7 @@ $(document).ready(function() {
         console.log(data)
 
         var request = $.ajax({
-            url: "/command",
+            url: "/pattern",
             type: "POST",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
