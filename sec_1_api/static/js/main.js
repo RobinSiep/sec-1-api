@@ -36,6 +36,25 @@ $(document).ready(function() {
         $(".has-error is-focused").removeClass(".has-error is-focused");
     })
 
+
+    $( "#device" ).change(function() {
+        var pattern =  JSON.parse($('option:selected', this).attr('pattern'));
+
+        for(second in pattern) {
+            checkbox =  $( "#" + second);
+            
+            if (pattern[second] == 0) {
+                checkbox.prop("checked", false);
+            }
+
+            else if (pattern[second] == 1) {
+                checkbox.prop("checked", true);
+            }
+            
+        }
+
+    });
+
     $("#pattern-form").submit(function(event){
         var $form = $(this);
 

@@ -29,8 +29,10 @@
 		        	<div class="form-group">
 						<label for="device">Kies device</label>
 							<select id="device" name='device_link_id' class="form-control">
+							<option selected disabled>klik hier om een device te kiezen</option>
+							<option value='/8bLKrkdHZdim3x/EGA31g==' pattern='[1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]' >klik hier om een device te kiezen</option>
 							% for device in devices:
-					    		<option  value="${device.link_id}">${device.name}</option>
+					    		<option  value="${device.link_id}" pattern='${device.pattern}'>${device.name}</option>
 					    	% endfor
 						</select>
 					</div>

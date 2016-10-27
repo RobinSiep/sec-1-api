@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, ForeignKey, Boolean, Table
 from sqlalchemy.orm import relationship
 from sqlalchemy_utils import UUIDType
 
+from sec_1_api.lib.security import get_secure_token
 from sec_1_api.models.meta import UUID, Base, DBSession as session
 
 log = logging.getLogger(__name__)
@@ -20,7 +21,7 @@ class Device(Base):
     __tablename__ = 'device'
 
     link_id = Column(
-        UUID, primary_key=True, default=uuid.uuid4)
+        String(250), primary_key=True, default=get_secure_token(16))
     secret_identifier = Column(String(250), unique=True)
     name = Column(String(250))
     on = Column(Boolean())

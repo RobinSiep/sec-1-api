@@ -31,18 +31,9 @@ log = logging.getLogger(__name__)
 @view_config(context=RootFactory,
              name='pattern',
              permission='public',
-             request_method='GET',
-             renderer='JSON')
-def pattern(request):
-    return {}
-
-
-@view_config(context=RootFactory,
-             name='pattern',
-             permission='public',
              request_method='POST',
              renderer='json')
-def pattern(request):
+def post_pattern(request):
 
     try:
         result, errors = PatternSchema(strict=True).load(request.json_body)
@@ -54,15 +45,17 @@ def pattern(request):
     except NoResultFound:
         raise HTTPBadRequest(json={"device": "not found"})
 
-    pattern = {}
+    pattern = []
     pattern_length = 12
+    log.info(result)
     for i in range(pattern_length):
         try:
-            pattern[i] = int(result[i])
+            pattern.append(int(result['second_{}'.format(i)]))
         except KeyError:
-            pattern[i] = 0
+            pattern.append(0)
 
-    device.pattern = pattern
+    device.pattern = str(pattern)
+    log.info(device.pattern)
     try:
         persist(device)
     except:
