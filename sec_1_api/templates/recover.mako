@@ -1,15 +1,20 @@
 <%inherit file="base.mako"/>
 <%block name="scripts">
   <script src="static/js/recover.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </%block>
-<div>
-	<form id="recover-email-form" class="form-horizontal col-md-3 col-sg-12 center-absolute">
+<div class="col-md-3 col-sg-12 center-absolute">
+	<form id="recover-email-form" class="form-horizontal">
+	% if send_captcha or recovery_captcha:
+	     <div id="captcha"><div class="g-recaptcha" data-sitekey="6LdGPQoUAAAAAKtKfu_qAwr9rQWxapllFZWoLUtJ"></div></div>
+	% endif
 		<fieldset>
 		    <div class="form-group">
 		      <div class="col-md-10">
 		        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email">
 		      </div>
 		    </div>
+		    
 		  	<div class="form-group">
 		    	<div>
 		        	<input type="submit" class="btn btn-raised btn-primary col-md-10 col-md-offset-1" value="Send recovery code" />
@@ -17,7 +22,7 @@
 			</div>
 	  	</fieldset>
 	</form>
-	<form id="recover-code-form" class="form-horizontal col-md-3 col-sg-12 center-absolute" style="display: none">
+	<form id="recover-code-form" class="form-horizontal" style="display: none">
 		<fieldset>
 		    <div class="form-group">
 	        <div class="col-md-10">

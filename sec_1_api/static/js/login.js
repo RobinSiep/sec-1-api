@@ -17,6 +17,7 @@ $(document).ready(function() {
 		})
 
 		request.fail(function(jqXHR, textStatus, errorThrown){
+			refreshCaptcha();
 			showErrors(JSON.parse(jqXHR.responseText))
 		})
 

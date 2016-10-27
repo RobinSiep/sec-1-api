@@ -18,6 +18,7 @@ $(document).ready(function() {
 
 		request.fail(function(jqXHR, textStatus, errorThrown){
 			showErrors(JSON.parse(jqXHR.responseText));
+			refreshCaptcha();
 		})
 
 		return false;
@@ -44,6 +45,7 @@ $(document).ready(function() {
 
 		request.fail(function(jqXHR, textStatus, errorThrown){
 			showErrors(JSON.parse(jqXHR.responseText));
+			refreshCaptcha();
 		})
 
 		return false;
@@ -57,4 +59,9 @@ $(document).ready(function() {
 toggleVisibility = function() {
 	$("#recover-email-form").toggle();
 	$("#recover-code-form").toggle();
+	if($("#recover-email-form").is(":visible")){
+		$(".g-recaptcha").prependTo("#recover-email-form");
+	} else {
+		$(".g-recaptcha").prependTo("#recover-code-form");
+	}
 }

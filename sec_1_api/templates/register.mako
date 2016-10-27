@@ -1,6 +1,7 @@
 <%inherit file="base.mako"/>
 <%block name="scripts">
   <script src="static/js/signup.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </%block>
 <div class="well col-md-6 col-md-offset-3">
   <form id="signup-form" class="form-horizontal">
@@ -38,6 +39,7 @@
         </div>
       </div>
       <div class="form-group">
+      <div id="captcha"><div class="g-recaptcha pull-right" data-sitekey="6LdGPQoUAAAAAKtKfu_qAwr9rQWxapllFZWoLUtJ"></div></div>
         <div class="col-md-12">
           <input type="submit" class="btn btn-primary pull-right" value="Sign up"/>
         </div>
