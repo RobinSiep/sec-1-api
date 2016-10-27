@@ -5,7 +5,10 @@
 
 
 <%block name="nav_buttons">
-    <ul class="nav navbar-nav navbar-right">
+	<ul class="nav navbar-nav">
+		<li><a href="device">Manage devices</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
         <li><a id="logout">logout</a></li>
     </ul>
 </%block>

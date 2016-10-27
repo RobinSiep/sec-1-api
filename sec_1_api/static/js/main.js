@@ -30,6 +30,11 @@ showErrors = function(errors) {
     }
 }
 
+refreshCaptcha = function() {
+    captcha = $(".g-recaptcha").detach();
+    captcha.prependTo("#captcha")
+}
+
 $(document).ready(function() {
     $("form").submit(function(event){
         $(".error").remove();

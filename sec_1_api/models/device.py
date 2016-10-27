@@ -1,9 +1,9 @@
 import logging
 import uuid
 
-from sqlalchemy import Column, String, ForeignKey, Boolean, Table
-from sqlalchemy.orm import relationship
-from sqlalchemy_utils import UUIDType
+from sqlalchemy import (Column, String, ForeignKey, Boolean, Table,
+                        UniqueConstraint, PrimaryKeyConstraint)
+from sqlalchemy.orm import backref, relationship
 
 from sec_1_api.lib.security import get_secure_token
 from sec_1_api.models.meta import UUID, Base, DBSession as session
@@ -11,24 +11,20 @@ from sec_1_api.models.meta import UUID, Base, DBSession as session
 log = logging.getLogger(__name__)
 
 
-device_user = Table('device_user', Base.metadata,
-                    Column('link_id', UUID, ForeignKey('device.link_id')),
-                    Column('user_id', UUID, ForeignKey('user.id'))
-                    )
-
-
 class Device(Base):
     __tablename__ = 'device'
 
     link_id = Column(
-        String(250), primary_key=True, default=get_secure_token(16))
-    secret_identifier = Column(String(250), unique=True)
+        String(24), primary_key=True, default=get_secure_token(16))
+    secret_identifier = Column(String(24), unique=True)
     name = Column(String(250))
     on = Column(Boolean())
     pattern = Column(String(100))
 
     users = relationship('User', secondary=device_user,
-                         backref='devices')
+                         backref=backref("devices", lazy="dynamic"))
+
+    UniqueConstraint('name', 'user.id')
 
 
 def get_device_by_link_id(link_id):

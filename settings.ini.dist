@@ -12,6 +12,7 @@ pyramid.debug_notfound = false
 pyramid.debug_routematch = false
 pyramid.default_locale_name = en
 pyramid.includes =
+    pyramid_mako
     pyramid_debugtoolbar
     pyramid_redis_sessions
 
@@ -24,6 +25,16 @@ redis.sessions.host =
 redis.sessions.port = 6379
 redis.sessions.db = 0
 redis.sessions.password =
+
+redis.host =
+redis.port = 6379
+redis.db = 0
+redis.password =
+
+google_recaptcha.url =
+google_recaptcha.secret =
+
+sendgrid_api_key =
 
 auth.secret =
 # these two settings below are optional

@@ -18,6 +18,7 @@ requires = [
     'pyramid_tm',
     'psycopg2',
     'redis',
+    'requests',
     'SQLAlchemy',
     'sqlalchemy_utils',
     'sendgrid',
