@@ -59,7 +59,7 @@ def increment_retries(context, request, identifier):
 
 
 def invalidate_retry_count(context, request, identifier):
-    RedisSession().session.delete((
+    RedisSession().session.delete(*(
         "retry_count_{}_{}".format(context, request.client_addr),
         "retry_count_{}_{}".format(context, identifier)))
 
