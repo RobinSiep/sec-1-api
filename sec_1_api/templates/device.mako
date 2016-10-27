@@ -1,6 +1,7 @@
 <%inherit file="base.mako"/>
 <%block name="scripts">
   <script src="static/js/logout.js"></script>
+  <script src="static/js/device.js"></script>
 </%block>
 <%block name="nav_buttons">
 	<ul class="nav navbar-nav">
@@ -10,17 +11,17 @@
         <li><a id="logout">logout</a></li>
     </ul>
 </%block>
-<form id="device-form" class="form-horizontal col-md-3 col-sg-12 center-absolute">
+<form id="device-form" class="form-horizontal col-md-4 col-sg-12 col-md-offset-4">
   <fieldset>
     <div class="form-group">
       <div class="col-md-12">
-        <input type="text" class="form-control" id="inputDeviceName" name="DeviceName" placeholder="Device Name">
-        <p class="help-block">Give the device a name which you can use to identify the device in the application</p>
+        <input type="text" class="form-control" id="inputDeviceName" name="name" placeholder="Device Name">
+        <p class="help-block">Give the device a custom name which you can use to identify the device in the application</p>
       </div>
     </div>
     <div class="form-group">
       <div class="col-md-12">
-        <input type="text" class="form-control" id="inputDeviceIdentifier" name="DeviceIdentifier" placeholder="Device Identifier">
+        <input type="text" class="form-control" id="inputDeviceIdentifier" name="link_id" placeholder="Device Identifier">
          <p class="help-block">This identifier is show when you set up the device for the first time</p>
     </div>
   </fieldset>
@@ -30,3 +31,17 @@
       </div>
     </div>
 </form>
+<table class="table table-striped table-hover">
+<thead>
+  <tr>
+    <th>Added devices</th>
+  </tr>
+</thead>
+<tbody>
+  % for device in devices:
+    <tr>
+      <td>${device.name}</td>
+    </tr>
+  % endfor
+</tbody>
+</table>
