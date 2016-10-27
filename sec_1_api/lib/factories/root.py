@@ -11,4 +11,5 @@ class RootFactory(dict):
     def __acl__(self):
         return ((Allow, Everyone, 'public'),
                 (Allow, Everyone, 'device'),
-                (Allow, Authenticated, 'logout'))
+                (Allow, Authenticated, 'logout'),
+                (Allow, Authenticated, 'home'))

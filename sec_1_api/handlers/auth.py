@@ -6,6 +6,8 @@ from pyramid.security import forget, remember
 from pyramid.view import view_config
 from sqlalchemy.orm.exc import NoResultFound
 
+from sec_1_api.lib.captcha import (google_recaptcha, increment_retries,
+                                   captcha_needed, invalidate_retry_count)
 from sec_1_api.lib.factories.root import RootFactory
 from sec_1_api.lib.security import check_password
 from sec_1_api.lib.validation.auth import LoginSchema
@@ -23,6 +25,10 @@ def login(request):
     except ValidationError as e:
         raise HTTPBadRequest(json_body=e.messages)
 
+    increment_retries('login', request, result["username"])
+    if captcha_needed('login', request, result["username"]):
+        google_recaptcha(request)
+
     try:
         user = get_user_by_username(username=result["username"])
     except NoResultFound:
@@ -33,6 +39,8 @@ def login(request):
     check_password(result["password"], user.password_hash, user.password_salt)
 
     headers = remember(request, str(user.id))
+
+    invalidate_retry_count('login', request, result["username"])
 
     # Return the session cookie
     return request.response.headerlist.extend(headers)

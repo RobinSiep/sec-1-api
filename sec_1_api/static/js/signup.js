@@ -25,9 +25,14 @@ $(document).ready(function() {
 			loginRequest.done(function(response, textStatus, jqXHR){
 				window.location.replace("home")
 			})
+
+			request.fail(function(jqXHR, textStatus, errorThrown){
+				window.location.replace("/")
+			})
 		})
 
 		request.fail(function(jqXHR, textStatus, errorThrown){
+			refreshCaptcha();
 			showErrors(JSON.parse(jqXHR.responseText))
 		})
 
