@@ -18,11 +18,17 @@ $.fn.serializeObject = function()
 };
 
 
-showErrors = function(errors) {
+showErrors = function(errors, elementType='input') {
     // Loop through all errors and show the error message below the affected input.
     for (var key in errors) {
         var error = default_error_p.replace("{}", errors[key]);
-        var focusInput = $("input[name=" + key +"]")
+
+        var focusInput = $("" + elementType +"[name=" + key +"]");
+        
+        
+        if(typeof focusInput == 'undefined') {
+            $("select[name=" + key +"]");
+        }
         $(error).insertAfter(focusInput);
         // hide all other help classes found
         focusInput.siblings('.help-block:not(.error)').hide();
@@ -75,9 +81,8 @@ $(document).ready(function() {
             data: data
         })
 
-
         request.fail(function(jqXHR, textStatus, errorThrown){
-            // showErrors(JSON.parse(jqXHR.responseText))
+            showErrors(JSON.parse(jqXHR.responseText), 'select')
         })
 
         return false;

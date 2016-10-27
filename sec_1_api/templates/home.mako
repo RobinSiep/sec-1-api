@@ -19,7 +19,7 @@
 <%block name='pattern'>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<p><h4>Hieronder kan je je eigen tril patroon kiezen. een patroon bestaat uit 12 seconde. Voor iedere seconde kan worden gekozen of de vibrator trilt of niet.</h4></p>
+			<p><h4>Hieronder kan je je eigen tril patroon kiezen. een patroon bestaat uit 11 seconde. Voor iedere seconde kan worden gekozen of de vibrator trilt of niet.</h4></p>
 		</div>
 	</div>
 
@@ -33,7 +33,6 @@
 						<label for="device">Kies device</label>
 							<select id="device" name='device_link_id' class="form-control">
 							<option selected disabled>klik hier om een device te kiezen</option>
-							<option value='/8bLKrkdHZdim3x/EGA31g==' pattern='[1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]' >klik hier om een device te kiezen</option>
 							% for device in devices:
 					    		<option  value="${device.link_id}" pattern='${device.pattern}'>${device.name}</option>
 					    	% endfor
@@ -41,7 +40,16 @@
 					</div>
 				
 					<div class="form-group">
-				      	% for i in range(12):
+						<div class="alert col-md-1 ">
+				            <div class="togglebutton col-md-offset-5">
+				                <label>
+				                	On <br><br>
+				                	<input value=1 type="checkbox" checkbox>
+				              </label>
+				            </div>
+				        </div>
+
+				      	% for i in range(11):
 				        	<div class="alert col-md-1 ">
 					            <div class="togglebutton col-md-offset-5">
 					                <label>
@@ -52,6 +60,8 @@
 					        </div>
 					    % endfor
 				    </div>
+
+				    
 			  	</fieldset>
 
 			  	<input type="submit" class="btn btn-primary pull-right" value="Sla patroon op" />

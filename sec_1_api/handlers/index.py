@@ -5,7 +5,7 @@ from pyramid.view import view_config
 
 from sec_1_api.lib.captcha import captcha_needed
 from sec_1_api.lib.factories.root import RootFactory
-from sec_1_api.models.device import get_devices_by_user_id, get_device_by_link_id
+from sec_1_api.models.device import get_devices_by_user_id
 
 log = logging.getLogger(__name__)
 

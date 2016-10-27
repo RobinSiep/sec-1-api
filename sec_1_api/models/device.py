@@ -11,6 +11,14 @@ from sec_1_api.models.meta import UUID, Base, DBSession as session
 log = logging.getLogger(__name__)
 
 
+device_user = Table('device_user', Base.metadata,
+                    Column('link_id', String(24),
+                           ForeignKey('device.link_id')),
+                    Column('user_id', UUID, ForeignKey('user.id')),
+                    PrimaryKeyConstraint('link_id', 'user_id')
+                    )
+
+
 class Device(Base):
     __tablename__ = 'device'
 

@@ -44,17 +44,19 @@ def post_pattern(request):
         device = get_device_by_link_id(result['device_link_id'])
     except NoResultFound:
         raise HTTPBadRequest(json={"device": "not found"})
+    except KeyError:
+        raise HTTPBadRequest(json={"device_link_id": "no device selected"})
 
-    pattern = []
-    pattern_length = 12
+    vibrate_pattern = []
+    pattern_length = 11
     log.info(result)
     for i in range(pattern_length):
         try:
-            pattern.append(int(result['second_{}'.format(i)]))
+            vibrate_pattern.append(int(result['second_{}'.format(i)]))
         except KeyError:
-            pattern.append(0)
+            vibrate_pattern.append(0)
 
-    device.pattern = str(pattern)
+    device.pattern = str(vibrate_pattern)
     log.info(device.pattern)
     try:
         persist(device)
@@ -68,6 +70,4 @@ def post_pattern(request):
     finally:
         commit()
 
-    return {
-
-    }
+    return {}
