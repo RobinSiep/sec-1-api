@@ -36,9 +36,7 @@ class Websocket(WebsocketConnectionView):
         while True:
             # wait for user message
             time.sleep(2)
-            log.info(self.identifier)
             if self.identifier:
-                log.info(self.identifier)
                 change = False
                 try:
                     device = get_device_by_secret_identifier(self.identifier)
@@ -56,7 +54,6 @@ class Websocket(WebsocketConnectionView):
             ).firmware_version
             global websockets
             websockets[self.identifier] = self
-            log.info(websockets)
             firmware_version = result['firmware_version']
             if float(firmware_version) < float(latest_firmware_version):
                 # send the firmware
