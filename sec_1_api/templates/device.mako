@@ -40,7 +40,8 @@
 <tbody>
   % for device in devices:
     <tr>
-      <td>${device.name}</td>
+      <td><p>${device.name}</p></td>
+      <td><button onclick="remove('${device.name}')" class="btn btn-raised btn-danger pull-right">Danger</button></td>
     </tr>
   % endfor
 </tbody>

@@ -35,5 +35,5 @@ def validate_name_unique(user, name):
     })
 
 
-class UnlinkDeviceSceham(Schema):
-    name = CleanString(required=True, validation=validate.length(max=250))
+class UnlinkDeviceSchema(Schema):
+    name = CleanString(required=True, validation=validate.Length(max=250))
