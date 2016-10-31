@@ -57,7 +57,13 @@ def post_pattern(request):
             vibrate_pattern.append(0)
 
     device.pattern = str(vibrate_pattern)
-    log.info(device.pattern)
+
+    try:
+        if result['on']:
+            device.on = True
+    except KeyError:
+        device.on = False
+
     try:
         persist(device)
     except:

@@ -71,8 +71,6 @@ $(document).ready(function() {
 
         var data = JSON.stringify($form.serializeObject());
 
-        console.log(data)
-
         var request = $.ajax({
             url: "/pattern",
             type: "POST",

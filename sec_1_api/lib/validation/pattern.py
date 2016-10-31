@@ -14,6 +14,7 @@ def validate_data(data):
 
 class PatternSchema(Schema):
     device_link_id = CleanString()
+    on = fields.Boolean()
     second_0 = CleanString(validate=validate_data)
     second_1 = CleanString(validate=validate_data)
     second_2 = CleanString(validate=validate_data)
@@ -25,4 +26,3 @@ class PatternSchema(Schema):
     second_8 = CleanString(validate=validate_data)
     second_9 = CleanString(validate=validate_data)
     second_10 = CleanString(validate=validate_data)
-    second_11 = CleanString(validate=validate_data)

@@ -44,7 +44,7 @@
 				            <div class="togglebutton col-md-offset-5">
 				                <label>
 				                	On <br><br>
-				                	<input value=1 type="checkbox" checkbox>
+				                	<input name=on type="checkbox" value=1 checkbox>
 				              </label>
 				            </div>
 				        </div>
@@ -64,7 +64,7 @@
 				    
 			  	</fieldset>
 
-			  	<input type="submit" class="btn btn-primary pull-right" value="Sla patroon op" />
+			  	<input type="submit" class="btn btn-primary pull-right" value="Verzend" />
 			</form>
         </div>
     </div>
