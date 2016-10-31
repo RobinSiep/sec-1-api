@@ -32,3 +32,7 @@ def get_latest_firmware():
 def get_firmware():
     return session.query(Firmware).order_by(
         Firmware.date_created.desc())
+
+
+def get_firmware_by_id(id):
+    return session.query(Firmware).get(id)

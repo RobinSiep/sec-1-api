@@ -1,3 +1,4 @@
+import datetime
 import logging
 import os
 import re
@@ -11,7 +12,7 @@ from pyramid.view import view_config
 from sec_1_api.lib.factories.root import RootFactory
 from sec_1_api.models import commit, persist, rollback
 from sec_1_api.models.firmware import (Firmware, get_latest_firmware,
-                                       get_firmware)
+                                       get_firmware, get_firmware_by_id)
 
 log = logging.getLogger(__name__)
 
@@ -71,3 +72,23 @@ def firmware_upload(request):
         zip_ref.extractall(path)
 
     raise HTTPCreated
+
+
+@view_config(context=RootFactory, permission='firmware', renderer='json',
+             request_method='PUT', name='firmware')
+def firmware_restore(request):
+    firmware = get_firmware_by_id(request.json_body['id'])
+    if not firmware:
+        raise HTTPBadRequest({"id": "No firmware found for given id"})
+
+    firmware.date_created = datetime.datetime.utcnow()
+
+    try:
+        persist(firmware)
+    except:
+        log.ciritcal("Something went wrong restoring the firmware",
+                     exc_info=True)
+        rollback()
+        raise HTTPInternalServerError
+    finally:
+        commit()

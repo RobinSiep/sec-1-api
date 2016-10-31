@@ -40,3 +40,19 @@ $(document).ready(function() {
 
 	return false;
 })
+
+restore = function(id) {
+	data = JSON.stringify({id: id})
+
+	var request = $.ajax({
+			url: "firmware",
+			type: "PUT",
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			data: data
+		})
+
+		request.done(function(response, textStatus, jqXHR){
+			location.reload();
+		})
+}

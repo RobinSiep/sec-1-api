@@ -46,6 +46,7 @@
         <td><p>${version.firmware_version}</p></td>
         <td><p>${version.uploader.username}</p></td>
         <td><p>${version.date_created}</p></td>
+        <td><button onclick="restore('${version.id}')" class="btn btn-raised btn-danger pull-right">Restore</button></td>
       </tr>
     % endfor
   </tbody>
