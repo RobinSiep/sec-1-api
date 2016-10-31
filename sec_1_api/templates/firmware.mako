@@ -30,3 +30,24 @@
       </div>
     </div>
 </form>
+<div class="col-md-12">
+  <h3>Version log</h3>
+  <table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Uploaded by</th>
+      <th>Date (UTC)</th>
+    </tr>
+  </thead>
+  <tbody>
+    % for version in firmware:
+      <tr>
+        <td><p>${version.firmware_version}</p></td>
+        <td><p>${version.uploader.username}</p></td>
+        <td><p>${version.date_created}</p></td>
+      </tr>
+    % endfor
+  </tbody>
+  </table>
+</div>

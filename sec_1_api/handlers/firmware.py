@@ -10,7 +10,8 @@ from pyramid.view import view_config
 
 from sec_1_api.lib.factories.root import RootFactory
 from sec_1_api.models import commit, persist, rollback
-from sec_1_api.models.firmware import Firmware, get_latest_firmware
+from sec_1_api.models.firmware import (Firmware, get_latest_firmware,
+                                       get_firmware)
 
 log = logging.getLogger(__name__)
 
@@ -19,7 +20,7 @@ log = logging.getLogger(__name__)
              renderer="sec_1_api:templates/firmware.mako",
              request_method='GET')
 def firmware_view(request):
-    return {}
+    return {"firmware": get_firmware()}
 
 
 @view_config(context=RootFactory, permission='firmware', renderer='json',
