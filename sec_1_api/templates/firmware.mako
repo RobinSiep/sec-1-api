@@ -14,13 +14,13 @@
         <li><a id="logout">logout</a></li>
     </ul>
 </%block>
-<form id="firmware-form" class="form-horizontal col-d-4 col-sg-12 col-md-offset-4" enctype="multipart/form-data">
+<form id="firmware-form" class="form-horizontal col-md-4 col-sg-12 col-md-offset-4" enctype="multipart/form-data">
   <fieldset>
     <div class="form-group">
       <div class="col-md-12">
-        <input type="file" id="inputFirmware" name="firmware" placeholder="firmware"/>
 
-        <p class="help-block">Upload a zip file containing the firmware</p>
+        <label for="inputFirmare">Click here to select a file to upload</label>
+        <input type="file" id="inputFirmware" name="firmware" value=""/>
       </div>
     </div>
   </fieldset>
