@@ -27,6 +27,7 @@ requires = [
     'transaction',
     'marshmallow',
     'waitress',
+    'webtest'
     ]
 
 tests_require = [
