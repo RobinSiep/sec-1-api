@@ -21,7 +21,10 @@ log = logging.getLogger(__name__)
              renderer="sec_1_api:templates/firmware.mako",
              request_method='GET')
 def firmware_view(request):
-    return {"firmware": get_firmware()}
+    response = {"firmware": get_firmware()}
+    if 'admin' in request.effective_principals:
+        response['admin'] = True
+    return response
 
 
 @view_config(context=RootFactory, permission='firmware', renderer='json',

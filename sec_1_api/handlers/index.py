@@ -20,4 +20,7 @@ def root_view(request):
 @view_config(context=RootFactory, permission='home', request_method='GET',
              renderer='sec_1_api:templates/home.mako', name='home')
 def home_view(request):
-    return {}
+    response = {}
+    if 'admin' in request.effective_principals:
+        response['admin'] = True
+    return response
