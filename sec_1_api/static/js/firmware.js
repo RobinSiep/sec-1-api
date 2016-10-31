@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$("#firmware-form").submit(function(event) {
+		event.preventDefault();
 		var $form = $(this);
 		var fd = new FormData();
 
@@ -20,6 +21,11 @@ $(document).ready(function() {
 		var xhr = new XMLHttpRequest();
 
 		xhr.open('POST', 'firmware', true)
+
+		//xhr.setRequestHeader(
+		//	'content-type',
+		//	'application/x-www-form-urlencoded'
+		//);
 
 		xhr.onload = function() {
 			if (xhr.status == 200) {

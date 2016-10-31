@@ -14,7 +14,7 @@
         <li><a id="logout">logout</a></li>
     </ul>
 </%block>
-<form id="firmware-form" class="form-horizontal col-d-4 col-sg-12 col-md-offset-4">
+<form id="firmware-form" class="form-horizontal col-d-4 col-sg-12 col-md-offset-4" enctype="multipart/form-data">
   <fieldset>
     <div class="form-group">
       <div class="col-md-12">
