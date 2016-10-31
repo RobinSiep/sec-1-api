@@ -22,11 +22,6 @@ $(document).ready(function() {
 
 		xhr.open('POST', 'firmware', true)
 
-		//xhr.setRequestHeader(
-		//	'content-type',
-		//	'application/x-www-form-urlencoded'
-		//);
-
 		xhr.onload = function() {
 			if (xhr.status != 201) {
 				showErrors(JSON.parse(xhr.response));
