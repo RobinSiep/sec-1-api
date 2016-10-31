@@ -28,11 +28,10 @@ $(document).ready(function() {
 		//);
 
 		xhr.onload = function() {
-			if (xhr.status == 200) {
-				console.log("true");
-			} else {
-				console.log("false");
+			if (xhr.status != 201) {
+				showErrors(JSON.parse(xhr.response));
 			}
+			$form.find("#upload").attr("value", "upload");
 		}
 
 		xhr.send(fd);
