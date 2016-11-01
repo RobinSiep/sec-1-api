@@ -64,3 +64,5 @@ target/
 # ini files
 *.ini
 !test.ini # Test ini is allowed
+
+firmware/

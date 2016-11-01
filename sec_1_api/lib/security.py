@@ -1,8 +1,18 @@
 import base64
+import logging
 import os
 
 import bcrypt
 from pyramid.httpexceptions import HTTPBadRequest
+
+from sec_1_api.models.user import get_user_by_id
+
+log = logging.getLogger(__name__)
+
+
+def establish_role(user_id, request):
+    user = get_user_by_id(user_id)
+    return (user.role,)
 
 
 def get_secure_token(length):

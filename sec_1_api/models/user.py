@@ -1,7 +1,7 @@
 import logging
 import uuid
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Enum
 
 from sec_1_api.models.meta import Base, UUID, DBSession as session
 
@@ -14,6 +14,7 @@ class User(Base):
     id = Column(UUID, primary_key=True, default=uuid.uuid4)
     username = Column(String(100), unique=True)
     email = Column(String(200), unique=True)
+    role = Column(Enum('basic', 'admin'), default='basic')
     password_hash = Column(String(100))
     password_salt = Column(String(100))
 
