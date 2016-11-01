@@ -9,6 +9,7 @@ from sqlalchemy import engine_from_config
 
 from sec_1_api.lib.factories.root import RootFactory
 from sec_1_api.lib.redis import RedisSession
+from sec_1_api.lib.security import establish_role
 from sec_1_api.models.meta import DBSession, Base
 from sec_1_api.models.user import get_user_by_id
 
@@ -29,6 +30,7 @@ def main(global_config, **settings):
         secret=settings['auth.secret'],
         timeout=settings.get('auth.timeout'),
         reissue_time=settings.get('auth.reissue_time'),
+        callback=establish_role,
         http_only=True,
         hashalg='sha512')
 

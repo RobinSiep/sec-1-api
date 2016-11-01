@@ -22,6 +22,8 @@ def root_view(request):
              renderer='sec_1_api:templates/home.mako', name='home')
 def home_view(request):
     devices = get_devices_by_user_id(request.user.id)
-    return {
-        'devices': devices
-    }
+    response = {}
+    response['devices'] = devices
+    if 'admin' in request.effective_principals:
+        response['admin'] = True
+    return response

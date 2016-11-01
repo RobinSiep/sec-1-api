@@ -11,6 +11,7 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
 requires = [
     'bcrypt',
     'bleach',
+    'packaging',
     'pyramid',
     'pyramid_mako',
     'pyramid_debugtoolbar',
@@ -21,12 +22,12 @@ requires = [
     'requests',
     'SQLAlchemy',
     'sqlalchemy_utils',
-    'sendgrid',
     'zope.sqlalchemy',
     'transaction',
     'marshmallow',
     'waitress',
-    'sendgrid'
+    'sendgrid',
+    'webtest'
 ]
 
 tests_require = [

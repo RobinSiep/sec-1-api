@@ -47,6 +47,7 @@ class UnitTestCase(TestCase):
     def get_post_request(self, post=None):
         request = testing.DummyRequest(json_body=post)
 
+        request.client_addr = "0.0.0.0"
         request.session = Mock()
 
         return request
