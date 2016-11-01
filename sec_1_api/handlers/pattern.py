@@ -41,7 +41,8 @@ def post_pattern(request):
         raise HTTPBadRequest(json_body=e.messages)
 
     try:
-        device = get_device_by_link_id(result['device_link_id'])
+        device = get_device_by_link_id(result['device_link_id'],
+                                       request.user.id)
     except NoResultFound:
         raise HTTPBadRequest(json={"device": "not found"})
     except KeyError:
@@ -49,7 +50,6 @@ def post_pattern(request):
 
     vibrate_pattern = []
     pattern_length = 11
-    log.info(result)
     for i in range(pattern_length):
         try:
             vibrate_pattern.append(int(result['second_{}'.format(i)]))

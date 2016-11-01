@@ -3,7 +3,9 @@ import uuid
 
 from sqlalchemy import (Column, String, ForeignKey, Boolean, Table,
                         UniqueConstraint, PrimaryKeyConstraint)
+
 from sqlalchemy.orm import backref, relationship
+from sqlalchemy.sql import and_
 
 from sec_1_api.lib.security import get_secure_token
 from sec_1_api.models.meta import UUID, Base, DBSession as session
@@ -35,8 +37,10 @@ class Device(Base):
     UniqueConstraint('name', 'user.id')
 
 
-def get_device_by_link_id(link_id):
-    return session.query(Device).filter(Device.link_id == link_id).one()
+def get_device_by_link_id(link_id, user_id=None):
+    return session.query(Device).filter(and_(Device.link_id == link_id,
+                                             Device.users.any(
+                                                 id=user_id))).one()
 
 
 def get_device_by_secret_identifier(secret_identifier):
@@ -44,6 +48,6 @@ def get_device_by_secret_identifier(secret_identifier):
         Device.secret_identifier == secret_identifier).one()
 
 
-def get_devices_by_user_id(user_id):
+def get_devices_by_user_id(user_id, link_id=None):
     return session.query(Device).filter(Device.users.any(
         id=user_id)).all()
