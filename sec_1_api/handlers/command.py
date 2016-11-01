@@ -1,24 +1,11 @@
-import asyncio
-import glob
-import json
 import logging
-import os
-import time
 
-from pyramid.httpexceptions import HTTPOk, HTTPBadRequest
+from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.view import view_config
-
-from aiopyramid.websocket.view import WebsocketConnectionView
-from aiopyramid.websocket.config import WebsocketMapper
-from aiopyramid.websocket.config import UWSGIWebsocketMapper
-
 from marshmallow import ValidationError
-from sqlalchemy.orm.exc import NoResultFound
 
 from sec_1_api.lib.factories.root import RootFactory
 from sec_1_api.lib.validation.command import PatternSchema
-from sec_1_api.models.firmware import get_latest_firmware
-from sec_1_api.models.device import get_device_by_secret_identifier
 
 
 log = logging.getLogger(__name__)
