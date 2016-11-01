@@ -4,6 +4,7 @@ import uuid
 
 
 from sqlalchemy import Column, String, ForeignKey, DateTime
+from sqlalchemy_utils import UUIDType
 from sqlalchemy.orm import relationship
 
 from sec_1_api.models.meta import Base, UUID, DBSession as session

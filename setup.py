@@ -22,19 +22,19 @@ requires = [
     'requests',
     'SQLAlchemy',
     'sqlalchemy_utils',
-    'sendgrid',
     'zope.sqlalchemy',
     'transaction',
     'marshmallow',
     'waitress',
+    'sendgrid',
     'webtest'
-    ]
+]
 
 tests_require = [
     'WebTest >= 1.3.1',  # py3 compat
     'pytest',  # includes virtualenv
     'pytest-cov',
-    ]
+]
 
 setup(name='sec-1-api',
       version='0.0',

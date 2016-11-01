@@ -18,11 +18,17 @@ $.fn.serializeObject = function()
 };
 
 
-showErrors = function(errors) {
+showErrors = function(errors, elementType='input') {
     // Loop through all errors and show the error message below the affected input.
     for (var key in errors) {
         var error = default_error_p.replace("{}", errors[key]);
-        var focusInput = $("input[name=" + key +"]")
+
+        var focusInput = $("" + elementType +"[name=" + key +"]");
+        
+        
+        if(typeof focusInput == 'undefined') {
+            $("select[name=" + key +"]");
+        }
         $(error).insertAfter(focusInput);
         // hide all other help classes found
         focusInput.siblings('.help-block:not(.error)').hide();
@@ -40,4 +46,43 @@ $(document).ready(function() {
         $(".error").remove();
         $(".has-error is-focused").removeClass(".has-error is-focused");
     })
+
+
+    $( "#device" ).change(function() {
+        var pattern =  JSON.parse($('option:selected', this).attr('pattern'));
+
+        for(second in pattern) {
+            checkbox =  $( "#" + second);
+            
+            if (pattern[second] == 0) {
+                checkbox.prop("checked", false);
+            }
+
+            else if (pattern[second] == 1) {
+                checkbox.prop("checked", true);
+            }
+            
+        }
+
+    });
+
+    $("#pattern-form").submit(function(event){
+        var $form = $(this);
+
+        var data = JSON.stringify($form.serializeObject());
+
+        var request = $.ajax({
+            url: "/pattern",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: data
+        })
+
+        request.fail(function(jqXHR, textStatus, errorThrown){
+            showErrors(JSON.parse(jqXHR.responseText), 'select')
+        })
+
+        return false;
+})
 })
