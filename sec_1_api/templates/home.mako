@@ -22,7 +22,7 @@
 <%block name='pattern'>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<p><h4>Hieronder kan je je eigen tril patroon kiezen. een patroon bestaat uit 11 seconde. Voor iedere seconde kan worden gekozen of de vibrator trilt of niet.</h4></p>
+			<p><h4>Here you can choose your vibration pattern. A pattern consists of 11 seconds. For every second you can choose if the vibrator vibrates or not</h4></p>
 		</div>
 	</div>
 
@@ -35,7 +35,7 @@
 		        	<div class="form-group">
 						<label for="device">Kies device</label>
 							<select id="device" name='device_link_id' class="form-control">
-							<option selected disabled>klik hier om een device te kiezen</option>
+							<option selected disabled>Choose Device..</option>
 							% for device in devices:
 					    		<option  value="${device.link_id}" pattern='${device.pattern}'>${device.name}</option>
 					    	% endfor
@@ -67,7 +67,7 @@
 				    
 			  	</fieldset>
 
-			  	<input type="submit" class="btn btn-primary pull-right" value="Verzend" />
+			  	<input type="submit" class="btn btn-primary pull-right" value="Send" />
 			</form>
         </div>
     </div>
