@@ -1,6 +1,6 @@
 import logging
 
-from pyramid.httpexceptions import HTTPBadRequest, HTTPInternalServerError
+from pyramid.httpexceptions import HTTPBadRequest, HTTPInternalServerError, HTTPOk
 from pyramid.view import view_config
 from marshmallow import ValidationError
 from sqlalchemy.orm.exc import NoResultFound
@@ -9,7 +9,6 @@ from sec_1_api.lib.factories.root import RootFactory
 from sec_1_api.lib.validation.pattern import PatternSchema
 
 from sec_1_api.models import commit, persist, rollback
-from sec_1_api.models.device import get_device_by_link_id
 
 
 log = logging.getLogger(__name__)
@@ -28,8 +27,8 @@ def post_pattern(request):
         raise HTTPBadRequest(json_body=e.messages)
 
     try:
-        device = get_device_by_link_id(result['device_link_id'],
-                                       request.user.id)
+        device = request.user.devices.filter_by(
+            link_id=result['device_link_id']).one()
     except NoResultFound:
         raise HTTPBadRequest(json={"device": "not found"})
     except KeyError:
@@ -63,4 +62,4 @@ def post_pattern(request):
     finally:
         commit()
 
-    return {}
+    return HTTPOk(json={"Pattern": "pattern saved"})
