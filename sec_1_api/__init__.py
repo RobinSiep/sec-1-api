@@ -1,4 +1,5 @@
 import logging
+from multiprocessing import Pool
 
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
@@ -12,6 +13,7 @@ from sec_1_api.lib.redis import RedisSession
 from sec_1_api.lib.security import establish_role
 from sec_1_api.models.meta import DBSession, Base
 from sec_1_api.models.user import get_user_by_id
+from sec_1_api.websocket.SimpleExampleServer import serve
 
 log = logging.getLogger(__name__)
 
@@ -42,6 +44,9 @@ def main(global_config, **settings):
     config.add_static_view(name='static', path="sec_1_api:static")
     config.add_renderer(None, JSON())
     config.scan('sec_1_api.handlers')
+
+    pool = Pool(processes=1)
+    pool.apply_async(serve, [settings])
 
     return config.make_wsgi_app()
 
