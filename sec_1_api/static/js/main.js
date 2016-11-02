@@ -1,5 +1,6 @@
 var default_error_p = "<p class='help-block error'>{}</p>"
 
+
 $.fn.serializeObject = function()
 {
     var o = {};
@@ -16,6 +17,15 @@ $.fn.serializeObject = function()
     });
     return o;
 };
+
+showSnackbar = function(message) {
+    var options =  {
+        content: "pattern saved", // text of the snackbar
+        style: "snackbar", // add a custom class to your snackbar
+        timeout: 2000 // time in milliseconds after the snackbar autohides, 0 is disabled
+    }
+    $.snackbar(options);
+}
 
 
 showErrors = function(errors, elementType='input') {
@@ -70,13 +80,16 @@ $(document).ready(function() {
         var $form = $(this);
 
         var data = JSON.stringify($form.serializeObject());
-
         var request = $.ajax({
             url: "/pattern",
             type: "POST",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: data
+        })
+
+        request.done(function() {
+            showSnackbar();
         })
 
         request.fail(function(jqXHR, textStatus, errorThrown){

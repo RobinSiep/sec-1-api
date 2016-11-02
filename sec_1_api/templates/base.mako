@@ -3,11 +3,14 @@
     <link rel="stylesheet" href="static/css/bootstrap-material-design.min.css" >
     <link rel="stylesheet" href="static/css/ripples.min.css" >
     <link rel="stylesheet" href="static/css/main.css" >
+    <link href="static/css/snackbar.min.css" rel="stylesheet">
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="static/js/material.min.js"></script>
     <script src="static/js/ripples.min.js"></script>
     <script src="static/js/main.js"></script>
+    <script src="static/js/snackbar.min.js"></script>
+
     <script>
 		$( document ).ready(function() 
 		{
