@@ -22,18 +22,18 @@
 <%block name='pattern'>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<p><h4>Here you can choose your vibration pattern. A pattern consists of 11 seconds. For every second you can choose if the vibrator vibrates or not</h4></p>
+			<p><h4>Here you can choose your vibration pattern. A pattern consists of 11 seconds. For every second you can choose if the vibrator vibrates or not.</h4></p>
 		</div>
 	</div>
 
 
     <div class="panel panel-default">
-        <div class="panel-heading">Tril patroon kiezen</div>
+        <div class="panel-heading">Select vibration pattern</div>
         <div class="panel-body">
 	        <form id="pattern-form">
 	        	<fieldset>
 		        	<div class="form-group">
-						<label for="device">Kies device</label>
+						<label for="device">Select device</label>
 							<select id="device" name='device_link_id' class="form-control">
 							<option selected disabled>Choose Device..</option>
 							% for device in devices:
