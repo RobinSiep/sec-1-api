@@ -37,10 +37,8 @@ class Device(Base):
     UniqueConstraint('name', 'user.id')
 
 
-def get_device_by_link_id(link_id, user_id=None):
-    return session.query(Device).filter(and_(Device.link_id == link_id,
-                                             Device.users.any(
-                                                 id=user_id))).one()
+def get_device_by_link_id(link_id):
+    return session.query(Device).filter(Device.link_id == link_id).one()
 
 
 def get_device_by_secret_identifier(secret_identifier):
