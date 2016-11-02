@@ -40,6 +40,10 @@ class UnlinkDeviceSchema(Schema):
 
 
 class FirmwareSchema(Schema):
-    identifier = CleanString(required='identifier is required')
     firmware_version = CleanString(
         required='firmware version is required', load_from='firmwareVersion')
+
+
+class IdSchema(Schema):
+    identifier = CleanString(required='identifier is required')
+
