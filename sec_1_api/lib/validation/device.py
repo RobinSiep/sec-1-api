@@ -37,3 +37,9 @@ def validate_name_unique(user, name):
 
 class UnlinkDeviceSchema(Schema):
     name = CleanString(required=True, validation=validate.Length(max=250))
+
+
+class FirmwareSchema(Schema):
+    identifier = CleanString(required='identifier is required')
+    firmware_version = CleanString(
+        required='firmware version is required', load_from='firmwareVersion')
