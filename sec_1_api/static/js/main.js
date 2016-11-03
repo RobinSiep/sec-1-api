@@ -62,7 +62,6 @@ $(document).ready(function() {
         var pattern =  JSON.parse($('option:selected', this).attr('pattern'));
         var on = $('option:selected', this).attr('on')
         var on_checkbox = $("#on")
-        console.log(on)
         if (on == 1) {
             on_checkbox.prop("checked", true);
         } else {
