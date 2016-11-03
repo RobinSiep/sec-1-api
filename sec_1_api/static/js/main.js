@@ -60,6 +60,13 @@ $(document).ready(function() {
 
     $( "#device" ).change(function() {
         var pattern =  JSON.parse($('option:selected', this).attr('pattern'));
+        var on = $('option:selected', this).attr('on')
+        var on_checkbox = $("#on")
+        if (on == 1) {
+            on_checkbox.prop("checked", true);
+        } else {
+            on_checkbox.prop("checked", false);
+        }
 
         for(second in pattern) {
             checkbox =  $( "#" + second);

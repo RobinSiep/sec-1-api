@@ -37,7 +37,7 @@
 							<select id="device" name='device_link_id' class="form-control">
 							<option selected disabled>Choose Device..</option>
 							% for device in devices:
-					    		<option  value="${device.link_id}" pattern='${device.pattern}'>${device.name}</option>
+					    		<option  value="${device.link_id}" pattern='${device.pattern}' on='${device.on}'>${device.name}</option>
 					    	% endfor
 						</select>
 					</div>
@@ -47,7 +47,7 @@
 				            <div class="togglebutton col-md-offset-5">
 				                <label>
 				                	On <br><br>
-				                	<input name=on type="checkbox" value=1 checkbox>
+				                		<input name=on type="checkbox" value=1 checkbox>
 				              </label>
 				            </div>
 				        </div>
