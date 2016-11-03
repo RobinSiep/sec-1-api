@@ -13,7 +13,7 @@ from sec_1_api.lib.redis import RedisSession
 from sec_1_api.lib.security import establish_role
 from sec_1_api.models.meta import DBSession, Base
 from sec_1_api.models.user import get_user_by_id
-from sec_1_api.websocket.SimpleExampleServer import serve
+from sec_1_api.websocket.server import serve
 
 log = logging.getLogger(__name__)
 
