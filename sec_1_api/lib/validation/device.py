@@ -1,6 +1,7 @@
 import logging
 
 from marshmallow import Schema, validate, post_load,  ValidationError
+from marshmallow.fields import Boolean
 from sqlalchemy.orm.exc import NoResultFound
 
 from sec_1_api.lib.validation import CleanString
@@ -47,3 +48,7 @@ class FirmwareSchema(Schema):
 class IdSchema(Schema):
     identifier = CleanString(required='identifier is required')
 
+
+class CommandSchema(Schema):
+    pattern = CleanString(dump_only=True)
+    on = Boolean(dump_only=True)

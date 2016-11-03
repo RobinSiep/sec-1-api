@@ -1,5 +1,5 @@
 import logging
-from multiprocessing import Pool
+from concurrent.futures import ProcessPoolExecutor as Pool
 
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
@@ -45,8 +45,8 @@ def main(global_config, **settings):
     config.add_renderer(None, JSON())
     config.scan('sec_1_api.handlers')
 
-    pool = Pool(processes=1)
-    pool.apply_async(serve, [settings])
+    pool = Pool()
+    pool.map(serve, [settings])
 
     return config.make_wsgi_app()
 
