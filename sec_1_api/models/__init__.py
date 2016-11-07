@@ -10,6 +10,10 @@ def commit():
     transaction.commit()
 
 
+def expunge(instance):
+    session.expunge(instance)
+
+
 def persist(obj):
     session.add(obj)
     session.flush()
